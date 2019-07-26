@@ -1,16 +1,37 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Container } from "semantic-ui-react";
+import CharacterCard from "./CharacterCard";
 
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
 
+  const [characters, setCharacters] = useState([]);
+
   useEffect(() => {
-    // TODO: Add AJAX/API Request here - must run in `useEffect`
-    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-  }, [])
+    axios.get("https://rickandmortyapi.com/api/character/").then(data => {
+      // console.log(data);
+      setCharacters(data.data.results);
+    });
+  }, []);
 
-  return <section className='character-list grid-view'>
-
-      <h2>TODO: `array.map()` over your state here!</h2>
-    </section>
+  return (
+    <Container>
+      <section className="character-list grid-view">
+        {characters.map((character, index) => {
+          return (
+            <CharacterCard
+              name={character.name}
+              imageSrc={character.image}
+              species={character.species}
+              location={character.location.name}
+              origin={character.origin.name}
+              key={index}
+            />
+          );
+        })}
+      </section>
+    </Container>
+  );
 
 }
