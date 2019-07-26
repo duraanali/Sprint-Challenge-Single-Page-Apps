@@ -16,12 +16,16 @@ const createLabel = (iconName, labelText) => <span><Icon name={iconName} />{labe
 
 const welcomeLabel = createLabel("home", "Home Page")
 const characterLabel = createLabel("users", "Characters")
-const locationLabel = createLabel("users", "Locations")
+const locationLabel = createLabel("map outline", "Locations")
+const episodeLabel = createLabel("video camera", "Episodes")
+const searchLabel = createLabel("search", "Search Characters")
 
 const panes = [
 	{ menuItem: <Menu.Item key='home' as={Nav} to={`/`} content={welcomeLabel} /> },
 	{ menuItem: <Menu.Item key='characters' as={Nav} to={`/characters`} content={characterLabel} /> },
-	{ menuItem: <Menu.Item key='locations' as={Nav} to={`/locations`} content={locationLabel} /> }
+	{ menuItem: <Menu.Item key='locations' as={Nav} to={`/locations`} content={locationLabel} /> },
+	{ menuItem: <Menu.Item key='Episodes' as={Nav} to={`/episodes`} content={episodeLabel} /> },
+	{ menuItem: <Menu.Item key='search' as={Nav} to={`/search`} content={searchLabel} /> },
 ]
 
 const TabNav = () => <Tab panes={panes} renderActiveOnly={false} />
